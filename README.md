@@ -1,2 +1,8 @@
 # workhour-report-generator
-Example of use: python3 workhoure-report-generator.py --signature mysignatue.svg FIRSTNAME, LASTNAME, 20 2017 1
+usage: workhour-report-generator.py [-h] [--institution INSTITUTION]
+                                    [--signature SIGNATURE]
+                                    FIRSTNAME LASTNAME HOURS YEAR MONTH
+
+Example 1: python3 workhoure-report-generator.py John , Doe, 45 2017 1
+
+Example 2: python3 workhoure-report-generator.py --signature mysignatue.svg John , Doe, 20 2017 1
