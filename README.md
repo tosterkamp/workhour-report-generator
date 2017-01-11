@@ -5,4 +5,4 @@ usage: workhour-report-generator.py [-h] [--institution INSTITUTION]
 
 Example 1: python3 workhour-report-generator.py John Doe 45 2017 1
 
-Example 2: python3 workhour-report-generator.py --institution 'My Institution' --signature mysignatue.svg John Doe 20 2017 1
+Example 2: python3 workhour-report-generator.py --institution 'MyInstitution' --signature mysignatue.svg John Doe 20 2017 1
