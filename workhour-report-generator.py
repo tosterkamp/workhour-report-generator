@@ -7,7 +7,7 @@
    
     @licence: GNU GENERAL PUBLIC LICENSE
     @author: Timo Osterkamp
-    @contact: tobias.thelen@uni-osnabrueck.de
+    @contact: tosterkamp@uni-osnabrueck.de
     @version: 1.0 (1/2017)
 
     Thanks to Benjamin Graf (bgraf@uos.de)
