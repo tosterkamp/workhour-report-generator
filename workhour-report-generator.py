@@ -370,27 +370,28 @@ def default_tabulation(days_and_hours, monat, jahr):
 def read_args():
     opts = argparse.ArgumentParser(description='Create workhour reports.')
     opts.add_argument('firstname', metavar='FIRSTNAME', type=str,
-                      help='First name')
+                      help='your first name')
     opts.add_argument('lastname', metavar='LASTNAME', type=str,
-                      help='First name')
+                      help='your last name')
     opts.add_argument('hours', metavar='HOURS', type=int,
-                      help='Number of hours')
+                      help='number of working hours')
     opts.add_argument('year', metavar='YEAR', type=int,
-                      help='Year')
+                      help='which Year')
     opts.add_argument('month', metavar='MONTH', type=int,
-                      help='Month')
+                      help='which month')
 
 
     opts.add_argument('--first', dest='first', type=int,
-                      default=1)
+                      default=1, help='earliest working day of the month')
     opts.add_argument('--last', dest='last', type=int,
-                      default=31)
+                      default=31, help='latest working day of the month')
 
     opts.add_argument('--institution', dest='institution', type=str,
-                      default='FB Mathematik/Informatik, Institut für Informatik')
+                      default='FB Mathematik/Informatik, Institut für Informatik',
+                      help='the institute where you work')
 
     opts.add_argument('--signature', dest='signature', type=str,
-                      default='')
+                      default='', help='path and filename of signature picture')
 
     args = opts.parse_args()
     return args
