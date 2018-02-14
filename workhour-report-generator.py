@@ -292,6 +292,10 @@ def is_workday(date):
     return date.weekday() < 5 and date not in holidays.DE(state='NI', years=date.year)
 
 
+#def is_in_working_day_range(date, first, last):
+#    return date.day >= first and date.day >= last
+
+
 def random_distribution(days, hours, **kwargs):
     """
     Args:
@@ -303,6 +307,8 @@ def random_distribution(days, hours, **kwargs):
     """
     min_h_per_day = kwargs.get('min_hours_per_day', 4)
     num_days_required = ceil(hours / min_h_per_day)
+    print(len(days))
+    print(num_days_required)
     selected_days = sorted(random.sample(days, num_days_required))
 
     day_to_hours = {}
@@ -374,6 +380,12 @@ def read_args():
     opts.add_argument('month', metavar='MONTH', type=int,
                       help='Month')
 
+
+    opts.add_argument('--first', dest='first', type=int,
+                      default=1)
+    opts.add_argument('--last', dest='last', type=int,
+                      default=31)
+
     opts.add_argument('--institution', dest='institution', type=str,
                       default='FB Mathematik/Informatik, Institut für Informatik')
 
@@ -391,7 +403,12 @@ def main():
     datum = '%02i.%02i.%04i' % (tag, monat, jahr)
     args = read_args()
     days = days_of_month(args.year, args.month)
-    workdays = list(filter(is_workday, days))
+
+    def is_in_working_day_range(date):
+        return date.day >= args.first and date.day <= args.last
+
+    days_in_range = list(filter(is_in_working_day_range, days))
+    workdays = list(filter(is_workday, days_in_range))
 
     # Distribute hours onto the days
     used_days = random_distribution(workdays, args.hours)
@@ -399,7 +416,6 @@ def main():
     # Merge assigned days and non-workdays
     day_to_hours = {day: hours for day, hours in used_days}
     days_and_hours = [(day, day_to_hours.get(day, 0)) for day in days]
-
     # Make output table
     table = default_tabulation(days_and_hours, args.month, args.year)
 
