@@ -2,6 +2,33 @@
 
 Create workhour reports.
 
+## Installation
+
+### Pre Install
+Fedora:
+`dnf install wkhtmltopdf`
+Ubuntu/Debian:
+`apt-get install wkhtmltopdf`
+
+### Clone Repository
+with SSH:
+`git clone git@github.com:tosterkamp/workhour-report-generator.git`
+with HTTPS:
+`git clone https://github.com/tosterkamp/workhour-report-generator.git`
+
+### Install
+create virtual environment:
+`python3 -m venv ./venv`
+
+source venv file:
+`source venv/bin/activate`
+
+install python requirements:
+`pip install -r requirements.txt`
+
+
+## Usage
+
 usage: workhour-report-generator.py [-h] [--first FIRST] [--last LAST] [--institution INSTITUTION] [--signature SIGNATURE] FIRSTNAME LASTNAME HOURS YEAR MONTH
 
 #### non optional arguments:
