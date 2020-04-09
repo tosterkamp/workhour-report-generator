@@ -374,7 +374,7 @@ def read_args():
     opts.add_argument('lastname', metavar='LASTNAME', type=str,
                       help='your last name')
     opts.add_argument('hours', metavar='HOURS', type=int,
-                      help='number of working hours')
+                      help='number of actual working hours in this month')
     opts.add_argument('year', metavar='YEAR', type=int,
                       help='which Year')
     opts.add_argument('month', metavar='MONTH', type=int,
@@ -385,6 +385,9 @@ def read_args():
                       default=1, help='earliest working day of the month')
     opts.add_argument('--last', dest='last', type=int,
                       default=31, help='latest working day of the month')
+    opts.add_argument('--monthly', dest='monthly', type=int,
+                      help='number of monthly working hours of your contract, '
+                           'if different to your actual hours in this month')
 
     opts.add_argument('--institution', dest='institution', type=str,
                       default='FB Mathematik/Informatik, Institut für Informatik',
@@ -394,6 +397,9 @@ def read_args():
                       default='', help='path and filename of signature picture')
 
     args = opts.parse_args()
+    if not args.monthly:
+        args.monthly = args.hours    
+
     return args
 
 
@@ -483,7 +489,7 @@ def main():
                     with tag('td', klass='formhead'):
                         text('Monatsarbeitszeit laut Arbeitsvertrag')
                     with tag('td', klass='formval'):
-                        text(args.hours, 'h')
+                        text(args.monthly, 'h')
 
             for _ in range(3): doc.stag('br')
 
