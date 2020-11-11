@@ -565,8 +565,7 @@ def main():
         args.year,
         args.month
     )
-
-    proc = subprocess.Popen(['wkhtmltopdf', '-', report_filename], stdin=subprocess.PIPE)
+    proc = subprocess.Popen(['wkhtmltopdf', '-', '--enable-local-file-access', report_filename], stdin=subprocess.PIPE)
     proc.communicate(input=bytes(doc.getvalue(), encoding='utf-8'))
 
     if proc.returncode != 0:
